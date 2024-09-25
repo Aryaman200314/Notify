@@ -5,11 +5,11 @@ const ProfileInnfo = ({onLogout}) => {
   return (
    <div className='profile-container'>
         <div className='profile-icon-holder'>
-            {getIntials("Aryaman sharma")}
+            {getIntials("Shahid Afridi")}
         </div>
 
         <div>
-            <p>Aryaman sharma</p>
+            <p> </p>
             <button onClick={onLogout} className='logout-btn'>
                 Logout
             </button>

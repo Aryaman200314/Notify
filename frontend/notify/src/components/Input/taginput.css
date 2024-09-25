@@ -1,0 +1,20 @@
+.add-tags-container{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 3px;
+    border: 1px solid black;
+}
+.tag-input-modal{
+    color: rgb(82, 82, 252);
+    font-size: x-large;
+    transition: transform 0.2s ease;
+}
+.tag-input-modal:hover{
+    transform: scale(1.2);
+}
+.input-form-tags{
+    padding: 5px;
+  
+    border:1px solid red;
+}
