@@ -37,7 +37,7 @@ const AddEditNotes = ({ noteData, type, onClose }) => {
         <input
           type='text'
           className='title-placeholder-text-edit-card'
-          placeholder='Go to gym at 5'
+          placeholder='Title'
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />

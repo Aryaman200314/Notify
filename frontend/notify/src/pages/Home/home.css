@@ -42,16 +42,7 @@
     gap: 16px;
     margin-top: 8px;
 }
-/* .add-new-btn-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(2, 2, 255, 0.637);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-} */
+
 .add-new-btn-container {
     width: 4rem;
     height: 4rem;
@@ -77,16 +68,6 @@
 .add-new-icon:hover{
     transform:scale(1.1);
 }
-/* .edit-card-modal{
-    width: 40%;
-    max-height: 75%;
-    background: white;
-    border-radius: 5px;
-    margin-top: 14px;
-    padding: 5px;
-    overflow: scroll;
-    height: 100%;
-} */
 .edit-card-modal {
     width: 40%;
     max-height: 75%;
