@@ -2,6 +2,7 @@ import React from 'react'
 import './notecard.css'
 import {MdOutlinePushPin} from 'react-icons/md'
 import {MdCreate, MdDelete} from 'react-icons/md'
+import moment from 'moment'
 const Notecard = ({ 
     title,
     date,
@@ -16,7 +17,7 @@ const Notecard = ({
             <div className='card-title-data-holder'>
                 <div>
                     <h6>{title}</h6>
-                    <span>{date}</span>
+                    <span>{moment(date).format('Do MMM YYYY')}</span>
                 </div>
 
 
@@ -26,7 +27,7 @@ const Notecard = ({
             </div>
             <p className=''>{content?.slice(0, 60)}</p>
             <div className='edit-delete-icon-container'>
-                <div className=''>{tags}</div>
+                <div className=''>{tags.map((item)=> `#${item}`)}</div>
                 <div className=''>
                     <MdCreate onClick={onEdit}/>
                     <MdDelete onClick={onDelete} />

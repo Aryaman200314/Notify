@@ -1,15 +1,15 @@
 import React from 'react'
 import './profileinnfo.css'
 import { getIntials } from '../../utils/helper'
-const ProfileInnfo = ({onLogout}) => {
+const ProfileInnfo = ({ userInfo, onLogout}) => {
   return (
    <div className='profile-container'>
         <div className='profile-icon-holder'>
-            {getIntials("Shahid Afridi")}
+            {getIntials(userInfo?.fullName)}
         </div>
 
         <div>
-            <p> </p>
+            <p> {userInfo?.fullName} </p>
             <button onClick={onLogout} className='logout-btn'>
                 Logout
             </button>
