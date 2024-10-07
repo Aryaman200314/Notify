@@ -59,10 +59,10 @@
   }
   
   .add-tag-btn {
-    background-color: rgb(82, 82, 252);
+    background-color: #0078d4;
     color: white;
     border: none;
-    padding: 8px;
+    padding: 8.7px;
     border-radius: 4px;
     cursor: pointer;
     transform: scale(1.1);
@@ -71,7 +71,7 @@
   
   .add-tag-btn:hover {
 
-    transform: scale(1.2);
+    background-color: #005fa8;
   }
   
   .tag-input-modal {

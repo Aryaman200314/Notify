@@ -7,7 +7,7 @@
 .profile-icon-holder{
     font-weight: 700;
     font-size: medium;
-    background-color: #f0f2f5;
+    background-color: #b3d6f2;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -18,4 +18,8 @@
 .logout-btn{
     font-size: medium;
     text-decoration: underline;
+    color: white;
+}
+.user-details p {
+ color: white;
 }

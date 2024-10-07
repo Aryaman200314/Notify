@@ -1,15 +1,15 @@
 .navbar 
 {
-        background-color: white;
+        background-color: #0072c6;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 1.5rem; /* equivalent to py-2 (0.5rem) and px-6 (1.5rem) */
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); /* equivalent to drop-shadow */
-}
+        padding: 0.5rem 1.5rem; 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); 
+    }
 .navbar-h2{
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 500; /* font-medium */
-    color: black; /* text-black */
-    padding: 0.5rem 0; /* py-2 */
+    font-size: 1.5rem; 
+    font-weight: 500; 
+    color: rgb(255, 255, 255); 
+    padding: 0.5rem 0; 
 }
