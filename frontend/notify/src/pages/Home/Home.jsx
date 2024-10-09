@@ -7,8 +7,9 @@ import AddEditNotes from './AddEditNotes';
 import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
-
-
+import Toast from '../../components/ToastMessage/Toast';
+import EmptyCard from '../../components/EmptyCard/EmptyCard';
+import noNote from '../../assets/Images/No_results.png'
 function Home() {
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown: false,
@@ -16,10 +17,40 @@ function Home() {
     data: null,
   });
 
+  const [showToastMsg, setShowToastMsg] = useState({
+    isShown: false,
+    message: "",
+    type: "add",
+  });
+
   const [userInfo, setUserInfo] = useState(null);
   const [allNotes, setAllNotes] = useState([]);
+  const [isSearch, setIssearch] = useState(false);
   const navigate = useNavigate();
 
+
+  const handleEdit = (noteDetails) => {
+    setOpenAddEditModal({
+      isShown: true,
+      data: noteDetails,
+      type: "edit"
+    });
+  }
+
+  const handleCloseToast = () => {
+    setShowToastMsg({
+      isShown: false,
+      message: "",
+    });
+  };
+
+  const showToastMessage = (message, type) => {
+    setShowToastMsg({
+      isShown: true,
+      message,
+      type
+    });
+  };
 
   const getUserInfo = async () => {
     try {
@@ -47,6 +78,54 @@ function Home() {
     }
   };
 
+
+  const deleteNote = async (data) => {
+    const noteId = data._id;
+    try{
+      const response =  await axiosInstance.delete("/delete-notes/" + noteId);
+
+    if(response.data && !response.data.error) {
+      showToastMessage("Note Deleted Successfully", 'deleted');
+        getAllNotes();
+    }
+
+    }
+    catch(error){
+      if(error.response && 
+        error.response.data &&
+        error.response.data.message
+      )
+      {
+        console.log("An unexped error has occured. Please try again");
+       }
+    }
+  }
+
+  const onSearchNote = async (query) => {
+    try{
+      const response = await axiosInstance.get(".search-notes", {
+        params: {
+          query
+        },
+      });
+      if(response.data && response.data.notes) {
+        setIssearch(true);
+        setAllNotes(response.data.notes);
+      }
+    }
+
+
+    catch(error){
+      console.log(error);
+    }
+  };
+
+  const handleClearSearch = () => {
+    setIssearch(false);
+    getAllNotes();
+  };
+
+
   useEffect(() => {
     getAllNotes();
     getUserInfo();
@@ -54,9 +133,11 @@ function Home() {
 
   return (
     <>
-      <Navbar userInfo={userInfo} />
+      <Navbar userInfo={userInfo} 
+      onSearchNote={onSearchNote} 
+      handleClearSearch={handleClearSearch}/>
       <div className='note-card-container'>
-        <div className='note-cards'>
+       {allNotes.length > 0 ? <div className='note-cards'>
           {allNotes.map((item, index) =>(
 
             <Notecard
@@ -66,15 +147,17 @@ function Home() {
               content={item.content}
               tags={item.tags}
               isPinned={item.isPinned} 
-              onEdit={() => { /* Add edit functionality here */ }}
-              onDelete={() => { /* Add delete functionality here */ }}
+              onEdit={() => handleEdit(item)}
+              onDelete={() => deleteNote(item)}
               onPinNote={() => { /* Add pin functionality here */ }}
             />
 
           ))}
           
-        </div>
-      </div>
+        </div> : <EmptyCard imgSrc={noNote} message={<>
+      Start creating your first note! Click on the + button to note down your thoughts, ideas, and reminders using <span className="notify-span">Notify</span>.
+    </>}/> }
+      </div> 
 
       <button
         className='add-new-btn-container'
@@ -109,8 +192,18 @@ function Home() {
           onClose={() => {
             setOpenAddEditModal({ isShown: false, type: 'add', data: null });
           }}
+          getAllNotes={getAllNotes}
+          showToastMessage = {showToastMessage}
         />
       </Modal>
+
+          <Toast
+          isShown={showToastMsg.isShown}
+          message={showToastMsg.message}
+          type={showToastMsg.type}
+          onClose={handleCloseToast}
+          />
+
     </>
   );
 }
