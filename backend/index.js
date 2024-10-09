@@ -297,7 +297,7 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
 
 //Searching 
 
-app.get("/search-notes", authenticateToken, async (req, res) => {
+app.get("/search-notes/", authenticateToken, async (req, res) => {
     const { user } = req.user;
     const { query } = req.query;
 
@@ -313,7 +313,6 @@ app.get("/search-notes", authenticateToken, async (req, res) => {
             $or: [
                 { title: { $regex: new RegExp(query, "i") } },
                 { content: { $regex: new RegExp(query, "i") } },
-                { tags: { $elemMatch: { $regex: new RegExp(query, "i") } } }, // Search in tags
             ],
         });
 

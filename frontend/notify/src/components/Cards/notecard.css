@@ -70,3 +70,9 @@
 .icon-buttons .icon:hover {
     color: #ff5252;
 }
+
+/* Style for pinned icon */
+.icon.pinned {
+    color: blue; /* Change the color when pinned */
+}
+

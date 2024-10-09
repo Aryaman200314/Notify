@@ -11,7 +11,7 @@
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    display: flex;
+    display: flex;  
     align-items: center;
     justify-content: center;
 }
@@ -19,6 +19,11 @@
     font-size: medium;
     text-decoration: underline;
     color: white;
+    cursor: pointer;
+    background-color: black;
+}
+.logout-btn:hover{
+    cursor: pointer;
 }
 .user-details p {
  color: white;

@@ -3,16 +3,17 @@ import './navbar.css'
 import ProfileInnfo from '../Cards/ProfileInnfo'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar'
-
+import logo from '../../assets/Images/logo.png'
 function Navbar({ userInfo, onSearchNote, handleClearSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const onLogout = () => {
+  const Logout = () => {
     console.log("logging out");
     localStorage.clear();
     navigate("/login");
   };
   const handleSearch = (e) => {
+    console.log("searched")
     if(searchQuery) {
       onSearchNote(searchQuery);
     }
@@ -25,7 +26,7 @@ function Navbar({ userInfo, onSearchNote, handleClearSearch }) {
 
   return (
     <div className= 'navbar'>   
-        <h2 className='navbar-h2'>Notify</h2>
+        <img className='navbar-log-img' src={logo}></img>
 
         <SearchBar value={searchQuery}
         onChange={({target})=>{
@@ -37,7 +38,7 @@ function Navbar({ userInfo, onSearchNote, handleClearSearch }) {
 
 
 
-        <ProfileInnfo userInfo={userInfo} onLogout={onLogout}/>
+        <ProfileInnfo userInfo={userInfo} onLogout={Logout}/>
     </div>
   )
 }

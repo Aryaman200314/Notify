@@ -13,3 +13,7 @@
     color: rgb(255, 255, 255); 
     padding: 0.5rem 0; 
 }
+.navbar-log-img{    
+    width: 110px;
+    height: 42px;
+}
