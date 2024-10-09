@@ -42,8 +42,8 @@ const Notecard = ({
                     {tags.map((item) => `#${item}  `)}
                 </div>
                 <div className='icon-buttons'>
-                    <MdCreate className='icon' onClick={onEdit} />
-                    <MdDelete className='icon' onClick={onDelete} />
+                    <MdCreate className='icon' id='create-icon' onClick={onEdit} />
+                    <MdDelete className='icon' id='delete-icon' onClick={onDelete} />
                 </div>
             </div>
         </div>

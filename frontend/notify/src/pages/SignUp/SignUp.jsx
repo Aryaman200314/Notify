@@ -5,6 +5,7 @@ import Passwordinput from '../../components/Input/Passwordinput';
 import { validateEmail } from '../../utils/helper';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
+import Toast from '../../components/ToastMessage/Toast';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -43,7 +44,10 @@ function SignUp() {
       }
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        navigate('/dashboard');
+        navigate('/login');
+        alert("Account created successfully");
+        // showToastMessage("Account created successfully");
+        // navigate('/dashboard');
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
