@@ -27,6 +27,7 @@ function Home() {
   const [userInfo, setUserInfo] = useState(null);
   const [allNotes, setAllNotes] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
+  const [navDisable, setNavDisable] = useState(false);
   const navigate = useNavigate();
 
 
@@ -157,6 +158,11 @@ function Home() {
       <Navbar userInfo={userInfo} 
       onSearchNote={onSearchNote} 
       handleClearSearch={handleClearSearch}/>
+
+
+
+
+
       <div className='note-card-container'>
        {allNotes.length > 0 ? <div className='note-cards'>
           {allNotes.map((item, index) =>(

@@ -6,6 +6,7 @@ import { validateEmail } from '../../utils/helper';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
 import Toast from '../../components/ToastMessage/Toast';
+import NavbarSL from '../../components/NavbarTwo/NavbarSL';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ function SignUp() {
 
   return (
     <>
-      <Navbar />
+      <NavbarSL />
       <div className='signup-page-container'>
         <div className='signup-form-container'>
           <form onSubmit={handleSignUp}>

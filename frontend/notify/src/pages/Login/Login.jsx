@@ -5,6 +5,7 @@ import './login.css';
 import Passwordinput from '../../components/Input/Passwordinput';
 import { validateEmail } from '../../utils/helper';
 import axiosInstance from '../../utils/axiosInstance';
+import NavbarSL from '../../components/NavbarTwo/NavbarSL';
 
 
 
@@ -50,7 +51,7 @@ function Login() {
 
   return (
     <>
-      <Navbar />
+      <NavbarSL/>
 
       <div className='login-upper-div'>
         <div className='login-inner-div'>

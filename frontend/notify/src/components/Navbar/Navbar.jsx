@@ -1,46 +1,65 @@
-import React, { useState } from 'react'
-import './navbar.css'
-import ProfileInnfo from '../Cards/ProfileInnfo'
-import { useNavigate } from 'react-router-dom'
-import SearchBar from '../SearchBar/SearchBar'
-import logo from '../../assets/Images/logo.png'
+import React, { useState } from 'react';
+import './navbar.css';
+import ProfileInnfo from '../Cards/ProfileInnfo';
+import { useNavigate } from 'react-router-dom';
+import { FaSearch, FaTimes } from 'react-icons/fa'; 
+import logo from '../../assets/Images/logo.png';
+
 function Navbar({ userInfo, onSearchNote, handleClearSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const navigate = useNavigate();
+
   const Logout = () => {
     console.log("logging out");
     localStorage.clear();
     navigate("/login");
   };
-  const handleSearch = (e) => {
-    console.log("searched")
-    if(searchQuery) {
+
+  const handleSearch = () => {
+    if (searchQuery) {
       onSearchNote(searchQuery);
     }
-  }
+  };
 
-  const onClearSearch = () =>{
+  const onClearSearch = () => {
     setSearchQuery("");
-    handleClearSearch()
-  }
+    handleClearSearch();
+  };
+
+  const toggleSearchBar = () => {
+    setIsSearchOpen(!isSearchOpen); 
+  };
 
   return (
-    <div className= 'navbar'>   
-        <img className='navbar-log-img' src={logo}></img>
-
-        <SearchBar value={searchQuery}
-        onChange={({target})=>{
-          setSearchQuery(target.value);
-        }}
-        handleSearch={handleSearch}
-        onClearSearch={onClearSearch}
-        />
+    <div className='navbar'>
+      <img className='navbar-log-img' src={logo} alt="logo" />
 
 
+      <div className={`search-bar-container ${isSearchOpen ? 'open' : ''}`}>
+        {isSearchOpen && (
+          <>
+            <input
+              type="text"
+              className={`search-input ${isSearchOpen ? 'visible' : 'hidden'}`}
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={({ target }) => setSearchQuery(target.value)}
+            />
+            <FaTimes className="clear-icon" onClick={onClearSearch} />
+            <FaSearch className="submit-search-icon" onClick={handleSearch} />
+          </>
+        )}
 
-        <ProfileInnfo userInfo={userInfo} onLogout={Logout}/>
+
+        {!isSearchOpen && (
+          <FaSearch className="search-icon" onClick={toggleSearchBar} />
+        )}
+      </div>
+
+      <ProfileInnfo userInfo={userInfo} onLogout={Logout} />
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
